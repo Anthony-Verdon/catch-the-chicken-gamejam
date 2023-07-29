@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1848426896}
+  animator: {fileID: 1848426902}
 --- !u!212 &1848426899
 SpriteRenderer:
   m_ObjectHideFlags: 0

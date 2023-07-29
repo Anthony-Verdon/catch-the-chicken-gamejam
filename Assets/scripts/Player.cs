@@ -15,30 +15,20 @@ public class Player : MonoBehaviour
     {
         vectorMovement.x = Input.GetAxisRaw("Horizontal");
         vectorMovement.y = Input.GetAxisRaw("Vertical");
-
-        //d = x:1, a = x:-1, w = y:1, s = y:-1
-        //Debug.Log("x:" + vectorMovement.x + "y:" + vectorMovement.y);
-        if (vectorMovement.x == 0 && vectorMovement.y == 0) {
-            if (currentState == "playerRunFront") {
-                ChangeAnimationState("playerIdleFront");
-            } else if (currentState == "playerRunBack") {
-                ChangeAnimationState("playerIdleBack");
-            } else if (currentState == "playerRunLeft") {
-                ChangeAnimationState("playerIdleLeft");
-            } else if (currentState == "playerRunRight") {
-                ChangeAnimationState("playerIdleRight");
-            } 
-        } else {
-            if (vectorMovement.x < 0) {
-                ChangeAnimationState("playerRunLeft");
-            } else if (vectorMovement.x != 0) {
-                ChangeAnimationState("playerRunRight");
-            }
-            if (vectorMovement.y < 0) {
-                ChangeAnimationState("playerRunFront");
-            } else if (vectorMovement.y != 0) {
-                ChangeAnimationState("playerRunBack");
-            }
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(1));
+        if (vectorMovement != Vector2.zero) {
+            animator.SetFloat("X", vectorMovement.x);
+            animator.SetFloat("Y", vectorMovement.y);
+        } else {        
+                if (currentState == "playerRunFront") {
+                    ChangeAnimationState("playerIdleFront");
+                } else if (currentState == "playerRunBack") {
+                    ChangeAnimationState("playerIdleBack");
+                } else if (currentState == "playerRunLeft") {
+                    ChangeAnimationState("playerIdleLeft");
+                } else if (currentState == "playerRunRight") {
+                    ChangeAnimationState("playerIdleRight");
+                } 
         }
         /*
         normalize : avoid acceleration if you walk diagonally
