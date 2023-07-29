@@ -12,6 +12,20 @@ public class Player : MonoBehaviour
     {
         vectorMovement.x = Input.GetAxisRaw("Horizontal");
         vectorMovement.y = Input.GetAxisRaw("Vertical");
+
+        Debug.Log("x:" + vectorMovement.x + "y:" + vectorMovement.y);
+        if (vectorMovement.x < 0) {
+        } else {
+
+        }
+        if (vectorMovement.y < 0) {
+        } else {
+            
+        }
+        /*
+        normalize : avoid acceleration if you walk diagonally
+        Time.deltaTime : avoid people who have a better frame rate to go faster
+        */
         rigidbody.velocity = vectorMovement.normalized * Time.deltaTime * speed;
     }
 }
