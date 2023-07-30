@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class MobGenerator: MonoBehaviour
 {
-
-    [SerializeField] private int width, height, spawnRateChicken, spawnRateFox;
     [SerializeField] private GameObject Chicken, Fox;
-
+    
     void Start()
     {
-        //GenerateMobs();
-        Instantiate(Fox, new Vector3(13, 13, 0), Quaternion.identity);
-        Instantiate(Fox, new Vector3(5, 5, 0), Quaternion.identity);
+        GenerateMobs();
     }
 
     private void GenerateMobs()
     {
         //go through all the map and try to spawn a chicken or a fox depending on the spawnRate
-        for (int x = 2; x < width - 2; x++)
+        for (int x = 2; x < Globals.MAP_WIDTH - 2; x++)
         {
-            for (int y = 2; y < height - 2; y++)
+            for (int y = 2; y < Globals.MAP_HEIGHT - 2; y++)
             {
                 float randomNumber =  Random.Range(0, 100);
-                if (randomNumber < spawnRateChicken)
+                if (randomNumber < Globals.CHICKEN_SPAWN_RATE)
                     Instantiate(Chicken, new Vector3(x, y, 0), Quaternion.identity);
-                if (randomNumber < spawnRateFox)
+                if (randomNumber < Globals.FOX_SPAWN_RATE)
                     Instantiate(Fox, new Vector3(x, y, 0), Quaternion.identity);
             }
         }

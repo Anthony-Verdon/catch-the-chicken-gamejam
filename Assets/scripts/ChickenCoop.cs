@@ -5,33 +5,38 @@ using UnityEngine.UI;
 
 public class ChickenCoop : MonoBehaviour
 {
-    [SerializeField] private int width, height;
     [SerializeField] private new Transform transform;
     [SerializeField] private Text ChickensSavedText;
     [SerializeField] private Text GameFinishText;
+    [SerializeField] private GameObject Player;
 
     private float distanceToPlayer;
     private int chickensSaved = 0;
-    private GameObject Player;
 
     void Start()
     {
-        Vector3 newPosition = new Vector3(width / 2, height / 2, 0);
+        Vector3 newPosition = new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2, 0);
         transform.position = newPosition;
-        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update() {
-        if (Player.GetComponent<Player>().GetisGameFinish()) {
+        float timeLeft = Player.GetComponent<Player>().GetTimeLeft();
+        if (timeLeft <= 0) {
             ChickensSavedText.text = "";
             GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !\nFoxes ate "+ addAllChickensAte().ToString() + " chickens !";
+        } else if (timeLeft == 3) {
+            GameFinishText.text = "                3...";
+        } else if (timeLeft == 2) {
+            GameFinishText.text = "                2..";
+        } else if (timeLeft == 1) {
+            GameFinishText.text = "                1.";
         }
     }
 
     private void OnMouseOver() {
         if(Input.GetMouseButtonDown(0) && playerClose()){
             chickensSaved += Player.GetComponent<Player>().GetChickensCaught();
-            ChickensSavedText.text = "Chickens saved: " + addAllChickensAte().ToString();
+            ChickensSavedText.text = "Chickens saved: " + chickensSaved.ToString();
             Player.GetComponent<Player>().SetChickensCaught(0);
         }
     }

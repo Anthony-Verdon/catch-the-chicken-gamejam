@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class GroundGrid : MonoBehaviour
 {
-    [SerializeField] private int width, height;
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tile tile;
 
@@ -15,8 +14,8 @@ public class GroundGrid : MonoBehaviour
 
     private void generateGrid() {
         //go through all the map and set ground tiles
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+        for (int x = 0; x < Globals.MAP_WIDTH; x++) {
+            for (int y = 0; y < Globals.MAP_HEIGHT; y++) {
                 tilemap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }

@@ -15,13 +15,13 @@ public class WallGrid : MonoBehaviour
 
     private void generateGrid() {
         //go through all the edge of map and set wall tiles
-        for (int x = 0; x < width; x++) {
-            if (x == 0 || x == width - 1) {
-                for (int y = 0; y < height; y++) {tilemap.SetTile(new Vector3Int(x, y, 0), tile);
+        for (int x = 0; x < Globals.MAP_WIDTH; x++) {
+            if (x == 0 || x == Globals.MAP_WIDTH - 1) {
+                for (int y = 0; y < Globals.MAP_HEIGHT; y++) {tilemap.SetTile(new Vector3Int(x, y, 0), tile);
                 }
             } else {
                 tilemap.SetTile(new Vector3Int(x, 0, 0), tile);
-                tilemap.SetTile(new Vector3Int(x, height - 1, 0), tile);
+                tilemap.SetTile(new Vector3Int(x, Globals.MAP_HEIGHT - 1, 0), tile);
             }
         }
     }

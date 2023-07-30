@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Chicken : MonoBehaviour
 {
-    [SerializeField] private int width, height;
     [SerializeField] private new Rigidbody2D rigidbody;
     [SerializeField] private new Transform transform;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private const float speed = 150;
     private string state = "readyToWalk";
     private float clock = 0;
     private float timeToRest;
     private float timeToWalk;
     private Vector2 direction = new Vector2();
-
     private float distanceToPlayerSquared;
     private GameObject Player;
 
@@ -74,15 +71,11 @@ public class Chicken : MonoBehaviour
         }
 
         //if chicken approach the edge of the map, he goes backward
-        if (transform.position.x < 2) {
-            direction.x = transform.position.x - 0;
-        } else if (transform.position.x > width - 2) {
-            direction.x = transform.position.x - width;
+        if ((transform.position.x < 2) || (transform.position.x > Globals.MAP_WIDTH - 2)) {
+            direction.x = Globals.MAP_WIDTH / 2 - transform.position.x;
         }
-        if (transform.position.y < 2) {
-            direction.y = transform.position.y - 0;
-        } else if (transform.position.y > height - 2) {
-            direction.y = transform.position.y - height;
+        if ((transform.position.y < 2) || (transform.position.y > Globals.MAP_HEIGHT - 2)) {
+            direction.y = Globals.MAP_HEIGHT / 2 - transform.position.y;
         }
 
         //if chicken goes to the left or right, flip is sprite into the good direction
@@ -98,7 +91,7 @@ public class Chicken : MonoBehaviour
             clock = 0;
             rigidbody.velocity = Vector2.zero;
         } else {
-            rigidbody.velocity = direction.normalized * Time.deltaTime * speed;
+            rigidbody.velocity = direction.normalized * Time.deltaTime * Globals.CHICKEN_SPEED;
         }
     }
 

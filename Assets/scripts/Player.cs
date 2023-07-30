@@ -6,38 +6,32 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField] private new Rigidbody2D rigidbody;
-    [SerializeField] private int width, height;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private new Transform transform;
     [SerializeField] private Text ChickensCaughtText;
     [SerializeField] private Text TimeLeftText;
-    [SerializeField] private int gameTime;
     
-
-    private const float speed = 300;
     private bool notInIdleState;
     private Vector2 vectorMovement;
     private int ChickensCaught = 0;
     private float clock = 0;
-    private bool isGameFinish = false;
 
     void Start() {
-        Vector3 newPosition = new Vector3(width / 2, height / 2 - 2, 0);
+        Vector3 newPosition = new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2 - 2, 0);
         transform.position = newPosition;
     }
 
     void Update()
     {
-        if (clock < gameTime) {
+        if (clock < Globals.GAME_DURATION) {
             UpdateMovement();
             UpdateLayer();
             clock += Time.deltaTime;
-            int timeLeft =  gameTime - (int)clock;
+            int timeLeft =  Globals.GAME_DURATION - (int)clock;
             TimeLeftText.text = "Time left: " + timeLeft.ToString();
             ChickensCaughtText.text = "Chickens caught: " + ChickensCaught.ToString();
         } else {
-            isGameFinish = true;
             TimeLeftText.text = "";
             ChickensCaughtText.text = "";
             rigidbody.velocity = Vector2.zero;
@@ -66,7 +60,7 @@ public class Player : MonoBehaviour
         //update movement speed
         //normalize : avoid acceleration if you walk diagonally
         //Time.deltaTime : avoid people who have a better frame rate to go faster
-        rigidbody.velocity = vectorMovement.normalized * Time.deltaTime * speed;
+        rigidbody.velocity = vectorMovement.normalized * Time.deltaTime * Globals.PLAYER_SPEED;
     }
 
     private void UpdateLayer() {
@@ -82,8 +76,8 @@ public class Player : MonoBehaviour
         return ChickensCaught;
     }
 
-    public bool GetisGameFinish() {
-        return isGameFinish;
+    public float GetTimeLeft() {
+        return Globals.GAME_DURATION - (int)clock;
     }
 
     public Vector2 GetDirection() {
@@ -95,7 +89,7 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.name == "Chicken(Clone)" && ChickensCaught < 5) {
+        if (clock < Globals.GAME_DURATION && other.gameObject.name == "Chicken(Clone)" && ChickensCaught < 5) {
             ChickensCaught += 1;
             Destroy(other.gameObject);
         }

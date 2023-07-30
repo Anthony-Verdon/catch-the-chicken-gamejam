@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class Fox : MonoBehaviour
 {
-    [SerializeField] private int width, height;
     [SerializeField] private new Rigidbody2D rigidbody;
     [SerializeField] private new Transform transform;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private const float speed = 225;
     private string state = "readyToRun";
     private float clock = 0;
     private float timeToRest;
     private float timeToWalk;
     private Vector2 direction = new Vector2();
     private int chickensAte = 0;
-
     private float distanceToPlayerSquared;
-    private GameObject Player;
     private Transform NearestChicken;
+    private GameObject Player;
+
 
     void Start()
     {
-        timeToRest = Random.Range(1, 5);
+        timeToRest = Random.Range(5, 15);
         timeToWalk = Random.Range(5, 10);
         Player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -77,18 +75,17 @@ public class Fox : MonoBehaviour
         } else if (NearestChicken){
             direction.x = NearestChicken.position.x - transform.position.x;
             direction.y = NearestChicken.position.y - transform.position.y;
+        } else {
+            state = "resting";
+            clock = 0;
         }
 
         //if fox approach the edge of the map, he goes backward
-        if (transform.position.x < 2) {
-            direction.x = transform.position.x - 0;
-        } else if (transform.position.x > width - 2) {
-            direction.x = transform.position.x - width;
+        if ((transform.position.x < 2) || (transform.position.x > Globals.MAP_WIDTH - 2)) {
+            direction.x = Globals.MAP_WIDTH / 2 - transform.position.x;
         }
-        if (transform.position.y < 2) {
-            direction.y = transform.position.y - 0;
-        } else if (transform.position.y > height - 2) {
-            direction.y = transform.position.y - height;
+        if ((transform.position.y < 2) || (transform.position.y > Globals.MAP_HEIGHT - 2)) {
+            direction.y = Globals.MAP_HEIGHT / 2 - transform.position.y;
         }
 
         //if fox goes to the left or right, flip is sprite into the good direction
@@ -104,7 +101,7 @@ public class Fox : MonoBehaviour
             clock = 0;
             rigidbody.velocity = Vector2.zero;
         } else {
-            rigidbody.velocity = direction.normalized * Time.deltaTime * speed;
+            rigidbody.velocity = direction.normalized * Time.deltaTime * Globals.FOX_SPEED;
         }
     }
 
@@ -144,7 +141,7 @@ public class Fox : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.name == "Chicken(Clone)") {
+        if (Player.GetComponent<Player>().GetTimeLeft() > 0 && other && other.gameObject.name == "Chicken(Clone)") {
             chickensAte += 1;
             Destroy(other.gameObject);
         }
