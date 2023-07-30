@@ -7,6 +7,7 @@ public class ChickenGenerator: MonoBehaviour
 
     [SerializeField] private int width, height, spawnRate;
     [SerializeField] private GameObject Chicken;
+    
     void Start()
     {
         GenerateChicken();

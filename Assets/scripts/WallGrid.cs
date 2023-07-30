@@ -13,7 +13,7 @@ public class WallGrid : MonoBehaviour
         generateGrid();
     }
 
-    void generateGrid() {
+    private void generateGrid() {
         //go through all the edge of map and set wall tiles
         for (int x = 0; x < width; x++) {
             if (x == 0 || x == width - 1) {

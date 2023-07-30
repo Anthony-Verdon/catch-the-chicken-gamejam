@@ -13,7 +13,7 @@ public class GroundGrid : MonoBehaviour
         generateGrid();
     }
 
-    void generateGrid() {
+    private void generateGrid() {
         //go through all the map and set ground tiles
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
