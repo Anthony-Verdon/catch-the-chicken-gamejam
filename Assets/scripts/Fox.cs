@@ -22,6 +22,8 @@ public class Fox : MonoBehaviour
 
     void Start()
     {
+        Vector3 newPosition = new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2 + 2, 0);
+        transform.position = newPosition;
         timeToRest = Random.Range(1, 5);
         timeToWalk = Random.Range(1, 5);
         Player = GameObject.FindGameObjectWithTag("Player");

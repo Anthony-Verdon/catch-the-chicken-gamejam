@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
             ChickensCaughtText.text = "";
             rigidbody.velocity = Vector2.zero;
         }
-
     }
 
     private void UpdateMovement() {
@@ -65,7 +64,7 @@ public class Player : MonoBehaviour
 
     private void UpdateLayer() {
         //probably a better of doing this
-        if (transform.position.y < 7.5) {
+        if (transform.position.y < Globals.MAP_HEIGHT / 2) {
             spriteRenderer.sortingOrder = 3;
         } else {
             spriteRenderer.sortingOrder = 1;

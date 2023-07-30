@@ -9,6 +9,7 @@ public class ChickenCoop : MonoBehaviour
     [SerializeField] private Text ChickensSavedText;
     [SerializeField] private Text GameFinishText;
     [SerializeField] private GameObject Player;
+    [SerializeField] private Button Menu, Play;
 
     private float distanceToPlayer;
     private int chickensSaved = 0;
@@ -17,13 +18,21 @@ public class ChickenCoop : MonoBehaviour
     {
         Vector3 newPosition = new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2, 0);
         transform.position = newPosition;
+        Menu.gameObject.SetActive(false);
+        Play.gameObject.SetActive(false);
     }
 
     void Update() {
+        GameFinish();
+    }
+
+    private void GameFinish() {
         float timeLeft = Player.GetComponent<Player>().GetTimeLeft();
         if (timeLeft <= 0) {
             ChickensSavedText.text = "";
             GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !\nThe fox ate "+ addAllChickensAte().ToString() + " chickens !";
+            Menu.gameObject.SetActive(true);
+            Play.gameObject.SetActive(true);
         } else if (timeLeft == 3) {
             GameFinishText.text = "                3...";
         } else if (timeLeft == 2) {

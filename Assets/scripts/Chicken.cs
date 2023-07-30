@@ -97,6 +97,9 @@ public class Chicken : MonoBehaviour
 
     //compare distanceSquared is more efficient
     private bool playerClose() {
+        if (Player == null) {
+            return (false);
+        }
         distanceToPlayerSquared = Mathf.Pow(transform.position.x - Player.transform.position.x, 2) + Mathf.Pow(transform.position.y - Player.transform.position.y, 2);
         //9 = Math.Pow(3, 2)
         if (distanceToPlayerSquared < 9) {

@@ -9,7 +9,7 @@ public class MobGenerator: MonoBehaviour
     void Start()
     {
         GenerateMobs();
-        Instantiate(Fox, new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2, 0), Quaternion.identity);
+        //Instantiate(Fox, new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2, 0), Quaternion.identity);
     }
 
     private void GenerateMobs()
