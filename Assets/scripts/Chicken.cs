@@ -7,8 +7,8 @@ public class Chicken : MonoBehaviour
     [SerializeField] private int width, height;
     [SerializeField] private new Rigidbody2D rigidbody;
     [SerializeField] private new Transform transform;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private const float speed = 150;
     private string state = "readyToWalk";
@@ -16,14 +16,17 @@ public class Chicken : MonoBehaviour
     private float timeToRest;
     private float timeToWalk;
     private Vector2 direction = new Vector2();
-    // Start is called before the first frame update
+
+    private float distanceToPlayer;
+    private GameObject Player;
+
     void Start()
     {
         timeToRest = Random.Range(3, 10);
         timeToWalk = Random.Range(3, 10);
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateMovement();
@@ -44,7 +47,7 @@ public class Chicken : MonoBehaviour
     private void ChickenRest() {
         //set animation from walking to idle
         animator.SetBool("isWalking", false);
-        if (clock < timeToRest)
+        if (clock < timeToRest && !playerClose())
             return ;
         //change chicken state if his time to rest is passed
         state = "readyToWalk";
@@ -63,14 +66,23 @@ public class Chicken : MonoBehaviour
     }
 
     private void ChickenWalking() {
-        //if chicken approach the edge of the map, he goes backward
-        if ((transform.position.x < 2 && direction.x < 0)
-            || (transform.position.x > width - 2 && direction.x > 0)) {
-            direction.x = -direction.x;
+
+        //if player is near, chicken run away
+        if (playerClose()) {
+            direction.x = transform.position.x - Player.GetComponent<Transform>().position.x;
+            direction.y = transform.position.y - Player.GetComponent<Transform>().position.y;
         }
-        if ((transform.position.y < 2 && direction.y < 0)
-            || (transform.position.y > height - 2 && direction.y > 0)) {
-            direction.y = -direction.y;
+
+        //if chicken approach the edge of the map, he goes backward
+        if (transform.position.x < 2) {
+            direction.x = transform.position.x - 0;
+        } else if (transform.position.x > width - 2) {
+            direction.x = transform.position.x - width;
+        }
+        if (transform.position.y < 2) {
+            direction.y = transform.position.y - 0;
+        } else if (transform.position.y > height - 2) {
+            direction.y = transform.position.y - height;
         }
 
         //if chicken goes to the left or right, flip is sprite into the good direction
@@ -81,12 +93,21 @@ public class Chicken : MonoBehaviour
         }
 
         //change chicken state if his time to walk is passed, else, make chicken walk
-        if (clock > timeToWalk) {
+        if (clock > timeToWalk && !playerClose()) {
             state = "resting";
             clock = 0;
             rigidbody.velocity = Vector2.zero;
         } else {
             rigidbody.velocity = direction.normalized * Time.deltaTime * speed;
+        }
+    }
+
+    private bool playerClose() {
+        distanceToPlayer = Mathf.Sqrt(Mathf.Pow(transform.position.x - Player.transform.position.x, 2) + Mathf.Pow(transform.position.y - Player.transform.position.y, 2));
+        if (distanceToPlayer < 3) {
+            return (true);
+        } else {
+            return (false);
         }
     }
 }

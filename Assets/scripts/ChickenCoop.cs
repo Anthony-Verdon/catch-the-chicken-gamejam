@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChickenCoop : MonoBehaviour
 {
     [SerializeField] private int width, height;
     [SerializeField] private new Transform transform;
+    [SerializeField] private Text ChickensSavedText;
+    [SerializeField] private Text GameFinishText;
 
     private float distanceToPlayer;
-    private int chickenRescued = 0;
+    private int chickensSaved = 0;
     private GameObject Player;
 
     void Start()
@@ -18,10 +21,18 @@ public class ChickenCoop : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    void Update() {
+        if (Player.GetComponent<Player>().GetisGameFinish()) {
+            ChickensSavedText.text = "";
+            GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !";
+        }
+    }
+
     private void OnMouseOver() {
         if(Input.GetMouseButtonDown(0) && playerClose()){
-            chickenRescued += Player.GetComponent<Player>().GetChickensGrabbed();
-            Player.GetComponent<Player>().SetChickensGrabbed(0);
+            chickensSaved += Player.GetComponent<Player>().GetChickensCaught();
+            ChickensSavedText.text = "Chickens saved: " + chickensSaved.ToString();
+            Player.GetComponent<Player>().SetChickensCaught(0);
         }
     }
 
@@ -33,6 +44,5 @@ public class ChickenCoop : MonoBehaviour
             return (false);
         }
     }
-
 
 }
