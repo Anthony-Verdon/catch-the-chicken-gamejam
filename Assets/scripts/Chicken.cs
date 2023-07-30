@@ -17,7 +17,7 @@ public class Chicken : MonoBehaviour
     private float timeToWalk;
     private Vector2 direction = new Vector2();
 
-    private float distanceToPlayer;
+    private float distanceToPlayerSquared;
     private GameObject Player;
 
     void Start()
@@ -102,9 +102,11 @@ public class Chicken : MonoBehaviour
         }
     }
 
+    //compare distanceSquared is more efficient
     private bool playerClose() {
-        distanceToPlayer = Mathf.Sqrt(Mathf.Pow(transform.position.x - Player.transform.position.x, 2) + Mathf.Pow(transform.position.y - Player.transform.position.y, 2));
-        if (distanceToPlayer < 3) {
+        distanceToPlayerSquared = Mathf.Pow(transform.position.x - Player.transform.position.x, 2) + Mathf.Pow(transform.position.y - Player.transform.position.y, 2);
+        //9 = Math.Pow(3, 2)
+        if (distanceToPlayerSquared < 9) {
             return (true);
         } else {
             return (false);

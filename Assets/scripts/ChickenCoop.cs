@@ -24,14 +24,14 @@ public class ChickenCoop : MonoBehaviour
     void Update() {
         if (Player.GetComponent<Player>().GetisGameFinish()) {
             ChickensSavedText.text = "";
-            GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !";
+            GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !\nFoxes ate "+ addAllChickensAte().ToString() + " chickens !";
         }
     }
 
     private void OnMouseOver() {
         if(Input.GetMouseButtonDown(0) && playerClose()){
             chickensSaved += Player.GetComponent<Player>().GetChickensCaught();
-            ChickensSavedText.text = "Chickens saved: " + chickensSaved.ToString();
+            ChickensSavedText.text = "Chickens saved: " + addAllChickensAte().ToString();
             Player.GetComponent<Player>().SetChickensCaught(0);
         }
     }
@@ -43,6 +43,15 @@ public class ChickenCoop : MonoBehaviour
         } else {
             return (false);
         }
+    }
+
+    private int addAllChickensAte() {
+        int chickensAte = 0;
+        GameObject[] Foxes = GameObject.FindGameObjectsWithTag("Fox");
+        foreach (GameObject Fox in Foxes) {
+            chickensAte += Fox.GetComponent<Fox>().GetChickensAte();
+        }
+        return chickensAte;
     }
 
 }

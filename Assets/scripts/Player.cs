@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
             isGameFinish = true;
             TimeLeftText.text = "";
             ChickensCaughtText.text = "";
+            rigidbody.velocity = Vector2.zero;
         }
 
     }
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (ChickensCaught < 5) {
+        if (other.gameObject.name == "Chicken(Clone)" && ChickensCaught < 5) {
             ChickensCaught += 1;
             Destroy(other.gameObject);
         }

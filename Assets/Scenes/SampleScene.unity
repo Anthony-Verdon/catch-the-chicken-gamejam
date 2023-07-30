@@ -214,7 +214,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -775,7 +775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: -10}
+  m_AnchoredPosition: {x: 105, y: 0}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633571425
@@ -910,7 +910,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   transform: {fileID: 1848426900}
   ChickensCaughtText: {fileID: 530600671}
   TimeLeftText: {fileID: 630574918}
-  gameTime: 10
+  gameTime: 60
 --- !u!212 &1848426899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 1919668772}
   - component: {fileID: 1919668771}
   m_Layer: 0
-  m_Name: ChickenGenerator
+  m_Name: MobGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,8 +1396,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 16
   height: 16
-  spawnRate: 10
+  spawnRateChicken: 10
+  spawnRateFox: 1
   Chicken: {fileID: 7957746022056981310, guid: 4ce4ee1970cb7f0d0b955c1188d16610, type: 3}
+  Fox: {fileID: 6617067290145680126, guid: 6bc4c8336757485cb8544e49471590f7, type: 3}
 --- !u!4 &1919668772
 Transform:
   m_ObjectHideFlags: 0
