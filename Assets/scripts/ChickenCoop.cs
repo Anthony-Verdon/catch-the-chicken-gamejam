@@ -23,7 +23,7 @@ public class ChickenCoop : MonoBehaviour
         float timeLeft = Player.GetComponent<Player>().GetTimeLeft();
         if (timeLeft <= 0) {
             ChickensSavedText.text = "";
-            GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !\nFoxes ate "+ addAllChickensAte().ToString() + " chickens !";
+            GameFinishText.text = "You saved " + chickensSaved.ToString() + " chickens !\nThe fox ate "+ addAllChickensAte().ToString() + " chickens !";
         } else if (timeLeft == 3) {
             GameFinishText.text = "                3...";
         } else if (timeLeft == 2) {

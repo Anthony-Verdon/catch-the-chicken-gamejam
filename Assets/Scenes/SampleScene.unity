@@ -309,11 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de925001b5fccc72599c3151522a1538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 16
   transform: {fileID: 445349099}
   ChickensSavedText: {fileID: 1340049426}
   GameFinishText: {fileID: 633571425}
+  Player: {fileID: 1848426895}
 --- !u!212 &445349098
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -573,7 +572,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
@@ -721,7 +720,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
@@ -775,7 +774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105, y: 0}
+  m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633571425
@@ -801,7 +800,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
@@ -866,8 +865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189aa389df5e2119487e1204340896f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 16
   tilemap: {fileID: 900792767}
   tile: {fileID: 11400000, guid: 03b6a8916fa0230429612932551e337c, type: 2}
 --- !u!483693784 &900792766
@@ -1018,7 +1015,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
@@ -1164,14 +1161,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1848426896}
-  width: 16
-  height: 16
   animator: {fileID: 1848426902}
   spriteRenderer: {fileID: 1848426899}
   transform: {fileID: 1848426900}
   ChickensCaughtText: {fileID: 530600671}
   TimeLeftText: {fileID: 630574918}
-  gameTime: 10
 --- !u!212 &1848426899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1394,10 +1388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66c21bc3d3e76902890d3d63a0fbe8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 16
-  spawnRateChicken: 10
-  spawnRateFox: 1
   Chicken: {fileID: 7957746022056981310, guid: 4ce4ee1970cb7f0d0b955c1188d16610, type: 3}
   Fox: {fileID: 6617067290145680126, guid: 6bc4c8336757485cb8544e49471590f7, type: 3}
 --- !u!4 &1919668772

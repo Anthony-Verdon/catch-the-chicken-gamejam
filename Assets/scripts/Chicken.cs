@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chicken : MonoBehaviour
 {
-    [SerializeField] private new Rigidbody2D rigidbody;
+    [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private new Transform transform;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;

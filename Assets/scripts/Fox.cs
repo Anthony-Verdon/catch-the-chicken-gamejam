@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fox : MonoBehaviour
 {
-    [SerializeField] private new Rigidbody2D rigidbody;
+    [SerializeField] private Rigidbody2D rigidbody;
     [SerializeField] private new Transform transform;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -22,8 +22,8 @@ public class Fox : MonoBehaviour
 
     void Start()
     {
-        timeToRest = Random.Range(5, 15);
-        timeToWalk = Random.Range(5, 10);
+        timeToRest = Random.Range(1, 5);
+        timeToWalk = Random.Range(1, 5);
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -75,9 +75,6 @@ public class Fox : MonoBehaviour
         } else if (NearestChicken){
             direction.x = NearestChicken.position.x - transform.position.x;
             direction.y = NearestChicken.position.y - transform.position.y;
-        } else {
-            state = "resting";
-            clock = 0;
         }
 
         //if fox approach the edge of the map, he goes backward
