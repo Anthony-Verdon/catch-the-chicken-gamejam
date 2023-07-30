@@ -14,6 +14,7 @@ public class GroundGrid : MonoBehaviour
     }
 
     void generateGrid() {
+        //go through all the map and set ground tiles
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 tilemap.SetTile(new Vector3Int(x, y, 0), tile);

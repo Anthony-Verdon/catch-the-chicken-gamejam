@@ -14,6 +14,7 @@ public class WallGrid : MonoBehaviour
     }
 
     void generateGrid() {
+        //go through all the edge of map and set wall tiles
         for (int x = 0; x < width; x++) {
             if (x == 0 || x == width - 1) {
                 for (int y = 0; y < height; y++) {tilemap.SetTile(new Vector3Int(x, y, 0), tile);
