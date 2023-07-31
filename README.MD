@@ -26,4 +26,4 @@ Possible upgrade :
 - Initially, I wanted to add a trader who could sell items like seed
 
 
-If you want to view code, here is a link : https://github.com/AnthonyVerdon-PersonalProjects/gamejam-1If you wan to play the game, here is a link : https://nordev.itch.io/catch-the-chickens
+If you wan to play the game, here is a link : https://nordev.itch.io/catch-the-chickens
