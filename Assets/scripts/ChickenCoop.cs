@@ -18,15 +18,23 @@ public class ChickenCoop : MonoBehaviour
     {
         Vector3 newPosition = new Vector3(Globals.MAP_WIDTH / 2, Globals.MAP_HEIGHT / 2, 0);
         transform.position = newPosition;
-        Menu.gameObject.SetActive(false);
-        Play.gameObject.SetActive(false);
+        if (Menu != null) {
+            Menu.gameObject.SetActive(false);
+        }
+        if (Play != null) {
+            Play.gameObject.SetActive(false);
+        }
     }
 
     void Update() {
         GameFinish();
+        PlayerSaveChickens();
     }
 
     private void GameFinish() {
+        if (GameFinishText == null) {
+            return ;
+        }
         float timeLeft = Player.GetComponent<Player>().GetTimeLeft();
         if (timeLeft <= 0) {
             ChickensSavedText.text = "";
@@ -42,8 +50,8 @@ public class ChickenCoop : MonoBehaviour
         }
     }
 
-    private void OnMouseOver() {
-        if(Input.GetMouseButtonDown(0) && playerClose()){
+    private void PlayerSaveChickens() {
+        if(Input.GetKeyDown("e") && playerClose()){
             chickensSaved += Player.GetComponent<Player>().GetChickensCaught();
             ChickensSavedText.text = "Chickens saved: " + chickensSaved.ToString();
             Player.GetComponent<Player>().SetChickensCaught(0);
@@ -68,4 +76,7 @@ public class ChickenCoop : MonoBehaviour
         return chickensAte;
     }
 
+    public int GetChickensSaved() {
+        return chickensSaved;
+    }
 }
