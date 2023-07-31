@@ -15,7 +15,11 @@ Music used :
 
 ​- Game : https://www.youtube.com/watch?v=X4vZ-l76Jqo​​
 
-Known bugs : in the tutorial, if you catch the chicken and press E near the Chicken Coop before the text tells you, you are blocked.
+Known bugs :
+
+- In the tutorial, if you catch the chicken and press E near the Chicken Coop before the text tells you, you are blocked.
+
+- Not playable on smartphone 
 
 Possible upgrade :
 
