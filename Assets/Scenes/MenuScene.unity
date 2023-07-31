@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 2068817716}
   - component: {fileID: 2068817715}
   m_Layer: 5
-  m_Name: '[Title of the Game]'
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -1107,7 +1107,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[Title of the Game]'
+  m_Text: Catch the chickens !
 --- !u!222 &2068817716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1322,6 +1322,10 @@ PrefabInstance:
     - target: {fileID: 2239063657970142794, guid: 2429ac6b882a7964383e6e3b474e2f9d, type: 3}
       propertyPath: sounds.Array.data[1].pitch
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239063657970142794, guid: 2429ac6b882a7964383e6e3b474e2f9d, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2239063657970142794, guid: 2429ac6b882a7964383e6e3b474e2f9d, type: 3}
       propertyPath: sounds.Array.data[1].volume

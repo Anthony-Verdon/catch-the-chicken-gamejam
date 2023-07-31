@@ -47,13 +47,13 @@ MonoBehaviour:
   sounds:
   - name: menuAndTutorial
     clip: {fileID: 8300000, guid: 0f936e9a6f6a8554d9afd0743188c26b, type: 3}
-    volume: 0.5
-    pitch: 0.52
+    volume: 0.25
+    pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: gameSound
     clip: {fileID: 8300000, guid: 45b01a608d086b44fa8ec884f7c86ddb, type: 3}
-    volume: 0.5
-    pitch: 0.48
+    volume: 0.25
+    pitch: 1
     loop: 1
     source: {fileID: 0}

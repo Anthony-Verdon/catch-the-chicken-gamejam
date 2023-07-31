@@ -11,6 +11,6 @@ public static class Globals
     public const int FOX_SPEED = 225;
     public const int FOX_SPAWN_RATE = 1;
     public const int PLAYER_SPEED = 300;
-    public const int GAME_DURATION = 10;
+    public const int GAME_DURATION = 60;
     public const int OFFSET = 6;
 }

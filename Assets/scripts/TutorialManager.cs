@@ -11,12 +11,11 @@ public class TutorialManager : MonoBehaviour
 
     private string tutorialStep = "start";
     private int movementMade = 0;
-    private Vector3 PlayerPosition;
+    private Vector3 mobPosition = new Vector3(Globals.MAP_WIDTH / 2 + 2, Globals.MAP_HEIGHT / 2 - 2, 0);
     // Start is called before the first frame update
     void Start()
     {
         Play.gameObject.SetActive(false);
-        PlayerPosition = Player.GetComponent<Transform>().position;
     }
 
     // Update is called once per frame
@@ -35,13 +34,13 @@ public class TutorialManager : MonoBehaviour
             }
             if (movementMade != 0 && Input.GetKeyDown("space")) {
                 tutorialStep = "catchChickens";
-                Instantiate(Chicken, new Vector3(PlayerPosition.x + 2, PlayerPosition.y, 0), Quaternion.identity);
+                Instantiate(Chicken,mobPosition, Quaternion.identity);
             }
         }  else if (tutorialStep == "catchChickens" && Player.GetComponent<Player>().GetChickensCaught() != 0 && Input.GetKeyDown("space")) {
             tutorialStep = "saveChicken";
         } else if (tutorialStep == "saveChicken" && ChickenCoop.GetComponent<ChickenCoop>().GetChickensSaved() != 0 && Input.GetKeyDown("space")) {
             tutorialStep = "learnAboutTheFox";
-            Instantiate(Fox, new Vector3(PlayerPosition.x + 2, PlayerPosition.y, 0), Quaternion.identity);
+            Instantiate(Fox, mobPosition, Quaternion.identity);
         } else if (tutorialStep == "learnAboutTheFox" &&  Input.GetKeyDown("space")) {
             tutorialStep = "rules";
         } else if (tutorialStep == "rules" &&  Input.GetKeyDown("space")) {
@@ -53,7 +52,7 @@ public class TutorialManager : MonoBehaviour
 
     private void UpdateText() {
         if (tutorialStep == "start") {
-            TutorialTips.text = "Welcome in [title] game tutorial !\nYou will learn everything you need to play.\nTo start the tutorial, press spacebar.";
+            TutorialTips.text = "Welcome in \"Catch the Chickens !\" game tutorial !\nYou will learn everything you need to play.\nTo start the tutorial, press spacebar.";
         } else if (tutorialStep == "learnToMove") {
             TutorialTips.text = "In this game, you can move with key arrows !\nPress spacebar to continue after this.";
         } else if (tutorialStep == "catchChickens") {

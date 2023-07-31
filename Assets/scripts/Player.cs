@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -24,15 +25,19 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (clock < Globals.GAME_DURATION) {
+        if (clock < Globals.GAME_DURATION || SceneManager.GetActiveScene().name != "GameScene") {
             UpdateMovement();
             UpdateLayer();
             clock += Time.deltaTime;
             int timeLeft =  Globals.GAME_DURATION - (int)clock;
-            TimeLeftText.text = "Time left: " + timeLeft.ToString();
+            if (TimeLeftText != null) {
+                TimeLeftText.text = "Time left: " + timeLeft.ToString();
+            }
             ChickensCaughtText.text = "Chickens caught: " + ChickensCaught.ToString();
-        } else {
-            TimeLeftText.text = "";
+        } else if (SceneManager.GetActiveScene().name == "GameScene") {
+            if (TimeLeftText != null) {
+                TimeLeftText.text = "";
+            }
             ChickensCaughtText.text = "";
             rigidbody.velocity = Vector2.zero;
         }
