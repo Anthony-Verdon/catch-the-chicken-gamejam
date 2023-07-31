@@ -12,7 +12,6 @@ Art used :
 Music used : 
 
 - Menu and Tutorial : https://www.youtube.com/watch?v=IhdibdC4azQ
-
 ​- Game : https://www.youtube.com/watch?v=X4vZ-l76Jqo​​
 
 Known bugs :
